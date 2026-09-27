@@ -431,7 +431,7 @@ if selected_states:
 if selected_regions:
 
     filtered_df = filtered_df[
-        filtered_df["ADML 2"]
+        filtered_df["ADM L2"]
         .astype(str)
         .isin(selected_regions)
     ]
@@ -564,7 +564,7 @@ total_agencies = (
 
 
 total_districts = (
-    filtered_df["ADML 3"].nunique()
+    filtered_df["ADM L3"].nunique()
     if "ADM L3" in filtered_df.columns
     else 0
 )
@@ -606,7 +606,7 @@ with k2:
 with k3:
 
     st.metric(
-        "Districts",
+        "ADM L3",
         f"{total_districts:,}"
     )
 
@@ -832,7 +832,7 @@ if "Federal State Member" in filtered_df.columns:
     state_data = (
         filtered_df
         .groupby(
-            "Federal State Member"
+            "ADM L1"
         )
         .size()
         .reset_index(
@@ -850,7 +850,7 @@ if "Federal State Member" in filtered_df.columns:
 
     fig = px.bar(
         state_data,
-        x="Federal State Member",
+        x="ADM L1",
         y="Beneficiaries",
         text="Beneficiaries"
     )
@@ -874,7 +874,7 @@ if "District" in filtered_df.columns:
 
     district_data = (
         filtered_df
-        .groupby("District")
+        .groupby("ADM L3")
         .size()
         .reset_index(
             name="Beneficiaries"
@@ -892,7 +892,7 @@ if "District" in filtered_df.columns:
     fig = px.bar(
         district_data,
         x="Beneficiaries",
-        y="District",
+        y="ADM L3",
         orientation="h",
         text="Beneficiaries"
     )
@@ -1230,9 +1230,9 @@ public_columns = [
     "FCS_category",
     "LCSI_category",
     "Agency",
-    "Federal State Member",
-    "Region",
-    "District",
+    "ADM L1",
+    "ADM L2",
+    "ADM L3",
     "Registration Date",
     "Age",
     "Gender",
